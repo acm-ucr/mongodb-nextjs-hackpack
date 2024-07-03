@@ -1,5 +1,65 @@
+"use client";
+
+import { useState } from "react";
+import { api } from "@/utils/api";
+
 const Home = () => {
-  return <>Hello World</>;
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+
+  const handleSubmit = async (e) => {
+    api({
+      method: "POST",
+      url: "/api/user",
+      body: { name, email },
+    })
+      .then(() => alert(`Submitted successfully!`, "success"))
+      .catch(() => alert(`Internal Server Error`, "error"));
+    e.preventDefault();
+  };
+
+  return (
+    <div className="w-full h-screen  flex flex-col justify-center items-center">
+      <p className="text-xl mb-4">Add Data to MongoDB</p>
+      <form
+        onSubmit={handleSubmit}
+        className="max-w-md mx-auto bg-white shadow-md rounded-md"
+      >
+        <div className="mb-4 p-3">
+          <label htmlFor="name" className="block text-gray-700 font-bold mb-2">
+            Name:
+          </label>
+          <input
+            type="text"
+            id="name"
+            className="px-3 py-2 border rounded-md"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+        <div className="mb-4 p-3">
+          <label htmlFor="email" className="block text-gray-700 font-bold mb-2">
+            Email:
+          </label>
+          <input
+            type="text"
+            id="email"
+            className="px-3 py-2 border rounded-md"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div className="text-center">
+          <button
+            type="submit"
+            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md mb-4"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  );
 };
 
 export default Home;

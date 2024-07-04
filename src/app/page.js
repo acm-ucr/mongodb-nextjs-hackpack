@@ -7,7 +7,8 @@ const Home = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     api({
       method: "POST",
       url: "/api/user",
@@ -15,7 +16,6 @@ const Home = () => {
     })
       .then(() => alert(`Submitted successfully!`, "success"))
       .catch(() => alert(`Internal Server Error`, "error"));
-    e.preventDefault();
   };
 
   return (

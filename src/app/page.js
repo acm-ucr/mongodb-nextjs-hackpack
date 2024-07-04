@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { api } from "@/utils/api";
+import toast from "react-hot-toast";
 
 const Home = () => {
   const [name, setName] = useState("");
@@ -14,8 +15,8 @@ const Home = () => {
       url: "/api/user",
       body: { name, email },
     })
-      .then(() => alert(`Submitted successfully!`, "success"))
-      .catch(() => alert(`Internal Server Error`, "error"));
+      .then(() => toast(`Submitted successfully!`))
+      .catch(() => toast(`Internal Server Error`));
   };
 
   return (

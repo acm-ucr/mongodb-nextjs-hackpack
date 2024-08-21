@@ -15,7 +15,15 @@ const Home = () => {
       url: "/api/user",
       body: { name, email },
     })
-      .then(() => toast(`Submitted successfully!`))
+      .then((res) => {
+        if (res.status >= 200 && res.status < 300) {
+          toast(`Submitted successfully!`);
+        } else {
+          throw new Error("Internal Server Error");
+        }
+        setName("");
+        setEmail("");
+      })
       .catch(() => toast(`Internal Server Error`));
   };
 

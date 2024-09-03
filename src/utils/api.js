@@ -6,5 +6,5 @@ export const api = async ({ url, method, body }) => {
 
   const data = await response.json();
 
-  return data;
+  return { status: response.status, data };
 };

@@ -1,10 +1,15 @@
 import { NextResponse } from "next/server";
 import connectDB from "@/utils/connectDB";
 
-export const POST = async (req) => {
+type User = {
+  name: string;
+  email: string;
+};
+
+export const POST = async (req: Request) => {
   const client = await connectDB();
 
-  const { name, email } = await req.json();
+  const { name, email }: User = await req.json();
   try {
     const db = client.db();
     const accountsCollection = db.collection("accounts");

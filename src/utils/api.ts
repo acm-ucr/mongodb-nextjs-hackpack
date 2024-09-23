@@ -1,19 +1,15 @@
-type apiGet = {
+interface apiGet {
   url: string;
   method: string;
   body: object;
-};
+}
 
-type apiResponse = {
+interface Response {
   status: number;
   data: any;
-};
+}
 
-export const api = async ({
-  url,
-  method,
-  body,
-}: apiGet): Promise<apiResponse> => {
+export const api = async ({ url, method, body }: apiGet): Promise<Response> => {
   const response = await fetch(url, {
     method: method,
     body: JSON.stringify(body),

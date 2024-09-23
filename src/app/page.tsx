@@ -17,11 +17,7 @@ const Home = () => {
       body: { name, email },
     })
       .then((res) => {
-        if (res.status >= 200 && res.status < 300) {
-          toast(`Submitted successfully!`);
-        } else {
-          throw new Error("Internal Server Error");
-        }
+        toast(`Submitted successfully!`);
         setName("");
         setEmail("");
       })

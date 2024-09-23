@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { useState } from "react";
 import { api } from "@/utils/api";
 import toast from "react-hot-toast";
@@ -8,7 +9,7 @@ const Home = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     api({
       method: "POST",

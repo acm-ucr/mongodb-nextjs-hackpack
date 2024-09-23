@@ -1,5 +1,4 @@
 import { MongoClient, ServerApiVersion } from "mongodb";
-import error from "next/error";
 
 type connectionType = {
   isConnected?: boolean;
@@ -28,7 +27,7 @@ const connectDB = async () => {
 
     return client;
   } catch (err) {
-    console.error("Error connecting to MongoDB:", error);
+    console.error("Error connecting to MongoDB:", err);
     throw new Error("MongoDB connection failed");
   }
 };

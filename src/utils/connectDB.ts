@@ -1,6 +1,12 @@
 import { MongoClient, ServerApiVersion } from "mongodb";
+import error from "next/error";
 
-const connection = {};
+type connectionType = {
+  isConnected?: boolean;
+  client?: MongoClient;
+};
+
+const connection: connectionType = {};
 
 const connectDB = async () => {
   if (connection.isConnected) {

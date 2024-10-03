@@ -1,15 +1,30 @@
-import mongoose from "mongoose";
+import { MongoClient, ServerApiVersion } from "mongodb";
 
 const connection = {};
 
 const connectDB = async () => {
   if (connection.isConnected) {
-    return;
+    return connection.client;
   }
 
-  const db = await mongoose.connect(process.env.MONGODB_URI);
+  const client = new MongoClient(process.env.MONGODB_URI, {
+    serverApi: {
+      version: ServerApiVersion.v1,
+      strict: true,
+      deprecationErrors: true,
+    },
+  });
+  try {
+    await client.connect();
 
-  connection.isConnected = db.connections[0].readyState;
+    connection.isConnected = true;
+    connection.client = client;
+
+    return client;
+  } catch (err) {
+    console.error("Error connecting to MongoDB:", error);
+    throw new Error("MongoDB connection failed");
+  }
 };
 
 export default connectDB;

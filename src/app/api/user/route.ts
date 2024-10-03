@@ -7,11 +7,10 @@ type User = {
 };
 
 export const POST = async (req: Request) => {
-  const client = await connectDB();
+  const db = await connectDB();
 
   const { name, email }: User = await req.json();
   try {
-    const db = client.db();
     const accountsCollection = db.collection("accounts");
 
     await accountsCollection.insertOne({

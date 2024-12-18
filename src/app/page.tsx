@@ -3,10 +3,14 @@
 import { useState } from "react";
 import { api } from "@/utils/api";
 import toast from "react-hot-toast";
+import React from "react";
 
+type Name = [name: string, (name: string) => void];
+
+type Email = [email: string, (email: string) => void];
 const Home = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [name, setName]: Name = useState("");
+  const [email, setEmail]: Email = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();

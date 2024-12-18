@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { api } from "@/utils/api";
 import toast from "react-hot-toast";
+import React from "react";
 
 const Home = () => {
   const [name, setName] = useState("");

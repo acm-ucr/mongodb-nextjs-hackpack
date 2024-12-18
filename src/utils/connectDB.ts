@@ -6,6 +6,10 @@ type connectionType = {
 };
 
 const connection: connectionType = {};
+const uri = process.env.MONGODB_URI;
+if (!uri) {
+  throw new Error("define the MONGODB_URI");
+}
 let db;
 
 const connectDB = async () => {
@@ -13,7 +17,7 @@ const connectDB = async () => {
     return connection.client;
   }
 
-  const client = new MongoClient(process.env.MONGODB_URI, {
+  const client = new MongoClient(uri, {
     serverApi: {
       version: ServerApiVersion.v1,
       strict: true,

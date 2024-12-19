@@ -6,7 +6,6 @@ type connectionType = {
 };
 
 const connection: connectionType = {};
-let db;
 
 const connectDB = async () => {
   if (connection.isConnected) {
@@ -22,12 +21,11 @@ const connectDB = async () => {
   });
   try {
     await client.connect();
-    db = client.db();
 
     connection.isConnected = true;
     connection.client = client;
 
-    return db;
+    return client;
   } catch (err) {
     console.error("Error connecting to MongoDB:", err);
     throw new Error("MongoDB connection failed");

@@ -1,10 +1,10 @@
-interface apiGet {
+interface API {
   url: string;
-  method: string;
-  body: object;
+  method: "GET" | "POST" | "PUT" | "DELETE";
+  body?: object;
 }
 
-export const api = async ({ url, method, body }: apiGet) => {
+export const api = async ({ url, method, body }: API) => {
   const response = await fetch(url, {
     method: method,
     body: JSON.stringify(body),
